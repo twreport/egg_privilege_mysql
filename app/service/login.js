@@ -25,13 +25,18 @@ class LoginService extends Service {
             console.log('====================');
             console.log(access_token);
             console.log('====================');
+            const result = await this.ctx.service.menu.getMenuByUserId(user_id);
+            const user_menu = result.user_menu;
+            const user_permission = result.user_permission;
             return {
                 msg: `您好！ ${user_name} , 成功登录！ 即将跳转！`,
                 data: {
                     'user_name': user_name,
                     'user_id': user_id,
                     'access_token': access_token,
-                    'expires': expires
+                    'expires': expires,
+                    'user_menu': user_menu,
+                    'user_permission': user_permission
                 }
             }
         } else {
